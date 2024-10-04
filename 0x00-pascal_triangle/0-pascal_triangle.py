@@ -1,28 +1,19 @@
-#!/usr/bin/env python3
-from typing import List
+#!/usr/bin/python3
+'''
+module to return pascal triangle
+'''
 
 
-def pascal_triangle(n: int) -> List[list]:
-    '''
-    Pascal triangle
-    '''
-    if n <= 0:
-        return []
-
-    if n == 1:
-        return [[1]]
-
-    if n == 2:
-        return [[1], [1, 1]]
-
-    triangle = [[1], [1, 1]]
-
-    for i in range(2, n):
-        temp = [1, 1]
-        for j in range(0, len(triangle[-1])-1):
-            a = triangle[-1][j]
-            b = triangle[-1][j+1]
-            temp.insert(-1, a + b)
-        triangle.append(temp)
-
-    return triangle
+def pascal_triangle(num):
+    ''' function that returns a pascal triangle '''
+    lst = []
+    if num <= 0:
+        return lst
+    for i in range(num):
+        lst.append([])
+        lst[i].append(1)
+        for j in range(1, i):
+            lst[i].append(lst[i - 1][j - 1] + lst[i - 1][j])
+        if i > 0:
+            lst[i].append(1)
+    return lst
